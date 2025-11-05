@@ -22,7 +22,7 @@ style: |
 ## 目次
 
 1. Claude Code
-2. Codex
+2. Codex CLI
 3. Gemini CLI
 4. Cursor CLI
 5. GitHub Copilot CLI
@@ -37,33 +37,66 @@ style: |
 
 ### 概要・特徴
 
-[ここにClaude Codeの概要と特徴を記載]
+Anthropicが開発したAIコーディングエージェント
+
+- 自然言語によるコード生成・編集
+- ローカル環境での動作
+- プロジェクト全体のコンテキスト理解
+- GitHub統合、エージェント型コーディング
 
 ### インストール方法
 
-[ここにインストール手順を記載]
+```bash
+npm install -g @anthropic-ai/claude-code
+claude login
+```
 
 ### 基本的な使い方
 
-[ここに基本的な使い方のチュートリアルを記載]
+```bash
+claude "タスクの説明"
+```
+
+### コスト
+
+- Pro: $20/月
+- Max: $100-200/月
 
 ---
 
 <!-- _class: split -->
 
-## Codex
+## Codex CLI
 
 ### 概要・特徴
 
-[ここにCodexの概要と特徴を記載]
+OpenAIが開発したオープンソースのコーディングエージェント
+
+- 自然言語による直感的な操作
+- ローカル環境での動作（プライバシー保護）
+- 多言語・多フレームワーク対応
+- セキュリティ機能（サンドボックスモード）
 
 ### インストール方法
 
-[ここにインストール手順を記載]
+```bash
+# macOS（Homebrew）
+brew install codex
+
+# npm
+npm install -g @openai/codex
+```
 
 ### 基本的な使い方
 
-[ここに基本的な使い方のチュートリアルを記載]
+```bash
+codex "自然言語での指示"
+```
+
+### コスト
+
+- ChatGPT Plus ($20/月) 以上で利用可能
+- Codex CLI自体は無料（API利用料が発生）
 
 ---
 
@@ -73,15 +106,34 @@ style: |
 
 ### 概要・特徴
 
-[ここにGemini CLIの概要と特徴を記載]
+Googleが開発したAIコーディングエージェント
+
+- GoogleのGeminiモデルを活用
+- 自然言語によるコード生成
+- Google Cloudとの統合
+- 100万トークンのコンテキストウィンドウ
+- マルチモーダル対応、Web検索統合
 
 ### インストール方法
 
-[ここにインストール手順を記載]
+```bash
+npm install -g @google/gemini-cli
+gemini
+# 初回起動時にGoogleアカウントで認証
+```
 
 ### 基本的な使い方
 
-[ここに基本的な使い方のチュートリアルを記載]
+```bash
+gemini
+# または
+gemini "タスクの説明"
+```
+
+### コスト
+
+- 無料枠あり（毎分60回、1日1,000回）
+- 従量課金プランあり
 
 ---
 
@@ -91,15 +143,29 @@ style: |
 
 ### 概要・特徴
 
-[ここにCursor CLIの概要と特徴を記載]
+Cursor IDEのコマンドラインインターフェース
+
+- インタラクティブモードと非対話モード
+- セッション管理機能
+- MCP（Model Context Protocol）サポート
+- ルールシステムによるカスタマイズ
 
 ### インストール方法
 
-[ここにインストール手順を記載]
+```bash
+curl https://cursor.com/install -fsS | bash
+```
 
 ### 基本的な使い方
 
-[ここに基本的な使い方のチュートリアルを記載]
+```bash
+cursor-agent "タスクの説明"
+```
+
+### コスト
+
+- 現在ベータ版で無料
+- 正式リリース後の料金は未定
 
 ---
 
@@ -109,15 +175,31 @@ style: |
 
 ### 概要・特徴
 
-[ここにGitHub Copilot CLIの概要と特徴を記載]
+GitHub Copilotのターミナル版
+
+- GitHubとの深い統合
+- エージェント機能
+- MCPによる拡張性
+- 完全な制御と透明性
 
 ### インストール方法
 
-[ここにインストール手順を記載]
+```bash
+npm install -g @github/copilot
+```
 
 ### 基本的な使い方
 
-[ここに基本的な使い方のチュートリアルを記載]
+```bash
+copilot
+# または
+copilot -p "プロンプト"
+```
+
+### コスト
+
+- Copilot Pro ($10/月) 以上で利用可能
+- CLI自体は追加料金なし
 
 ---
 
@@ -297,21 +379,29 @@ pip install icode-studio
 
 ## 比較表
 
-| ツール名 | 機能 | 特徴 | 価格 | 対応OS | 備考 |
-|---------|------|------|------|--------|------|
-| Claude Code | [機能を記載] | [特徴を記載] | [価格を記載] | [対応OSを記載] | [備考を記載] |
-| Codex | [機能を記載] | [特徴を記載] | [価格を記載] | [対応OSを記載] | [備考を記載] |
-| Gemini CLI | [機能を記載] | [特徴を記載] | [価格を記載] | [対応OSを記載] | [備考を記載] |
-| Cursor CLI | [機能を記載] | [特徴を記載] | [価格を記載] | [対応OSを記載] | [備考を記載] |
-| GitHub Copilot CLI | [機能を記載] | [特徴を記載] | [価格を記載] | [対応OSを記載] | [備考を記載] |
+| ツール名 | 主要機能 | 特徴 | 価格 | 対応OS | 備考 |
+|---------|---------|------|------|--------|------|
+| Claude Code | コード生成・編集・リファクタリング | AnthropicのClaudeモデル、エージェント型 | Pro: $20/月、Max: $100-200/月 | macOS, Linux, Windows(WSL) | GitHub統合、多言語対応 |
+| Codex CLI | コード生成・編集・実行 | OpenAI、ローカル実行、サンドボックス | ChatGPT Plus($20)以上 | macOS, Linux, Windows(WSL) | オープンソース |
+| Gemini CLI | コード生成・レビュー・Web検索 | Google Gemini、100万トークンコンテキスト | 無料枠あり、従量課金 | macOS, Linux, Windows(WSL) | オープンソース、マルチモーダル |
+| Cursor CLI | コード生成・レビュー | IDE統合、MCPサポート | ベータ版（無料） | macOS, Linux, Windows(WSL) | Cursor IDEと統合 |
+| GitHub Copilot CLI | コード生成・GitHub統合 | GitHubとの統合、エージェント機能 | Copilot Pro($10)以上 | macOS, Linux, Windows(WSL) | GitHub統合が強力 |
 
 ---
 
 ## まとめ
 
-- 各AI CLIツールは異なる目的と特徴を持っています
-- プロジェクトの要件や開発環境に応じて適切なツールを選択することが重要です
-- 開発支援、コード解析、MLモデル管理など、用途に応じて使い分けましょう
+### 主要ツールの特徴
+
+- **Codex CLI**: OpenAI、オープンソース、ローカル実行重視
+- **Cursor CLI**: IDE統合、ベータ版で無料、MCPサポート
+- **GitHub Copilot CLI**: GitHub統合が強力、エージェント機能
+
+### 選択のポイント
+
+- プロジェクトの要件や開発環境に応じて適切なツールを選択
+- セキュリティ要件、コスト、統合の必要性を考慮
+- 開発支援、コード解析、MLモデル管理など、用途に応じて使い分け
 
 ---
 

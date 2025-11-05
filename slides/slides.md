@@ -2,6 +2,7 @@
 marp: true
 theme: default
 paginate: true
+lang: ja
 header: 'AI CLI Tools Kickstart Guide'
 footer: '© 2025'
 style: |

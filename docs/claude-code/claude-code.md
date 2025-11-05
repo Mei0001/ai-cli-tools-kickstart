@@ -73,11 +73,16 @@ Claude Codeの利用には、以下の料金プランが用意されています
 - **オペレーティングシステム**: 
   - macOS 10.15以降
   - Ubuntu 20.04+/Debian 10+
-  - Windows 10+（WSL 1、WSL 2、またはGit for Windowsを使用。ネイティブ動作も可能）
+  - Windows 10+（2025年7月以降、ネイティブサポート。WSL 1、WSL 2、またはGit for Windowsも使用可能）
 - **ハードウェア**: 4GB以上のRAM
-- **ソフトウェア**: Node.js 18以上、npmまたはyarn
+- **ソフトウェア**: 
+  - Node.js 18以上（推奨: 最新のLTSバージョン 22.x）
+  - npmまたはyarn
+  - **Windowsの場合**: Git for Windows（必須）
 - **ネットワーク**: 認証とAI処理にインターネット接続が必要（オフライン使用不可）
-- **シェル**: Bash、Zsh、またはFishで最適に動作
+- **シェル**: 
+  - macOS/Linux: Bash、Zsh、またはFishで最適に動作
+  - Windows: PowerShell、コマンドプロンプト、またはGit Bash
 - **アカウント**: ProまたはMaxプランのサブスクリプションが必要
 
 ### macOS
@@ -120,53 +125,150 @@ Claude Codeの利用には、以下の料金プランが用意されています
 
 ### Windows
 
-#### 方法1: ネイティブインストール（推奨）
+**重要**: 2025年7月以降、Claude CodeはWindowsにネイティブ対応しました。WSL（Windows Subsystem for Linux）を使用せずに、直接Windows環境でインストール・利用が可能です。
 
-1. **Node.jsとnpmの確認**
-   PowerShellまたはコマンドプロンプトを開き、以下のコマンドを実行します：
+#### 方法1: npmを使用したネイティブインストール（推奨）
+
+1. **システム要件の確認**
+   - Windows 10以上
+   - Node.js 18以上
+   - Git for Windows（必須）
+
+2. **必要なソフトウェアのインストール**
+
+   **Node.jsのインストール**:
+   - [Node.js公式サイト](https://nodejs.org/)から最新のLTSバージョン（推奨: 22.x）をダウンロードしてインストールします
+   - または、wingetを使用してインストール：
+     ```powershell
+     winget install OpenJS.NodeJS
+     ```
+
+   **Git for Windowsのインストール**:
+   - [Git for Windows公式サイト](https://git-scm.com/download/win)からダウンロードしてインストールします
+   - または、wingetを使用してインストール：
+     ```powershell
+     winget install Git.Git
+     ```
+
+3. **インストール前の確認**
+   PowerShellまたはコマンドプロンプトを開き、以下のコマンドでインストールされていることを確認します：
    ```powershell
    node --version
    npm --version
+   git --version
    ```
-   Node.js 18以上がインストールされていることを確認してください。インストールされていない場合は、[Node.js公式サイト](https://nodejs.org/)から最新のLTSバージョンをダウンロードしてインストールします。
+   すべてのコマンドがバージョン番号を表示することを確認してください。
 
-2. **Claude Codeのインストール**
-   管理者権限でPowerShellを開き、以下のコマンドを実行します：
+4. **Claude Codeのインストール**
+   PowerShellまたはコマンドプロンプトを開き、以下のコマンドを実行します：
    ```powershell
    npm install -g @anthropic-ai/claude-code
    ```
+   
+   **注意**: 管理者権限は通常不要ですが、権限エラーが発生した場合は、npmのグローバルインストールパスを変更するか、nvmを使用してください。
 
-3. **バージョン確認**
+5. **インストールの確認**
    ```powershell
    claude --version
    ```
-   インストールが成功したことを確認します。
+   または、より詳細な情報を確認：
+   ```powershell
+   claude doctor
+   ```
+   これにより、インストールタイプとバージョンが表示されます。
 
-4. **認証**
+6. **認証**
    ```powershell
    claude login
    ```
-   または：
+   または単に：
    ```powershell
    claude
    ```
    プロンプトに従ってログイン方法を選択します。ブラウザで認証画面が表示されるので、Anthropicアカウントでサインインして許可を行います。
 
-#### 方法2: WSL経由でのインストール
+#### 方法2: Git Bashを使用したインストール
 
-Windows Subsystem for Linux（WSL）を使用する場合：
+Git Bashを使用する場合（公式ドキュメントで推奨されている方法）：
+
+1. **Git for Windowsのインストール**
+   [Git for Windows公式サイト](https://git-scm.com/download/win)からインストールします。
+
+2. **Git Bashを開く**
+   Git Bashを起動します。
+
+3. **Node.jsとnpmの確認**
+   ```bash
+   node --version
+   npm --version
+   ```
+   Node.js 18以上がインストールされていることを確認してください。
+
+4. **Claude Codeのインストール**
+   ```bash
+   npm install -g @anthropic-ai/claude-code
+   ```
+
+5. **ポータブルGitインストールの場合の設定**
+   ポータブルGitインストールを使用している場合、環境変数を設定する必要があります：
+   ```powershell
+   $env:CLAUDE_CODE_GIT_BASH_PATH="C:\Program Files\Git\bin\bash.exe"
+   ```
+   または、Gitがインストールされている実際のパスを指定します。
+
+6. **認証**
+   ```bash
+   claude login
+   ```
+
+#### 方法3: バイナリ版を使用したインストール（ベータ版）
+
+2025年7月以降、Windows向けのネイティブバイナリ版（ベータ版）が提供されています。この方法では、Node.jsのインストールが不要です。
+
+1. **バイナリ版のダウンロード**
+   - 公式サイトまたはGitHubリリースページからWindows用のバイナリをダウンロードします
+   - 現在ベータ版のため、公式ドキュメントで最新のダウンロード方法を確認してください
+
+2. **インストール**
+   - ダウンロードしたインストーラーを実行してインストールします
+
+3. **認証**
+   ```powershell
+   claude login
+   ```
+
+**注意**: バイナリ版はベータ版のため、npm版の方が安定している場合があります。
+
+#### 方法4: WSL経由でのインストール（従来の方法）
+
+Windows Subsystem for Linux（WSL）を使用する場合も引き続きサポートされています：
 
 1. **WSLのセットアップ**
-   WSL 1またはWSL 2をインストールし、UbuntuまたはDebianディストリビューションをセットアップします。
+   - WSL 1またはWSL 2をインストールします
+   - UbuntuまたはDebianディストリビューションをセットアップします
 
 2. **WSL内でmacOSと同じ手順を実行**
-   WSLターミナルを開き、macOSの手順と同じようにNode.jsとClaude Codeをインストールします。
+   - WSLターミナルを開き、macOSの手順と同じようにNode.jsとClaude Codeをインストールします
+   - 詳細は、上記のmacOSのインストール手順を参照してください
 
 ### トラブルシューティング
 
+#### Windows固有の問題
+
+- **Git for Windowsが見つからない**: Git for Windowsがインストールされていることを確認してください。ポータブルGitを使用している場合は、環境変数`CLAUDE_CODE_GIT_BASH_PATH`を設定してください
+- **パスの問題**: Git Bashのパスが正しく設定されていない場合、環境変数を確認してください
 - **権限エラー**: `sudo npm install -g`の使用は推奨されていません。代わりに、npmのグローバルインストールパスを変更するか、nvmを使用してください
-- **インストールエラー**: Node.jsのバージョンが18以上であることを確認してください
+- **インストールエラー**: Node.jsのバージョンが18以上であることを確認してください。最新のLTSバージョン（22.x）の使用を推奨します
 - **認証エラー**: ブラウザで認証が完了しているか確認し、APIキーが正しく設定されているか確認してください
+- **claudeコマンドが見つからない**: インストール後、新しいターミナルセッションを開くか、環境変数PATHを更新してください
+
+#### 一般的な問題
+
+- **ネットワークエラー**: インターネット接続を確認し、ファイアウォールやプロキシ設定を確認してください
+- **npmレジストリエラー**: npmのレジストリが正しく設定されているか確認してください：
+  ```powershell
+  npm config get registry
+  ```
 
 ## 特徴や得意なこと・苦手なこと
 
@@ -276,6 +378,12 @@ Windows Subsystem for Linux（WSL）を使用する場合：
 - [Claude Code実践ガイド：GA版のインストールからサンドボックスPythonまで（2025年5月版）](https://zenn.dev/unikoukokun/articles/63f020b8cafbf7)
 - [Claude CodeのPlanモードを駆使し、楽に品質を担保してみた - WILLGATE TECH BLOG](https://tech.willgate.co.jp/entry/2025/09/17/120000)
 
+### Windowsインストール関連
+
+- [Claude CodeがWindowsにネイティブ対応 - 窓の杜](https://forest.watch.impress.co.jp/docs/news/2030822.html)
+- [WindowsでClaude Codeをネイティブに使ってみた - Classmethod Developers Blog](https://dev.classmethod.jp/articles/try-windows-claude-code-native/)
+- [Claude Code Windowsの最新インストール完全ガイドと活用事例比較 | Tech Home](https://rush-up.co.jp/media/claude-code-windows-install-guide-case-study/)
+
 ### 活用事例・チュートリアル
 
 - [ウェブディレクターがClaude Codeで企業サイトを構築してみた〜工数96%削減、コード0行の衝撃体験記〜 | LUA BLANCA CONNECT](https://www.lua-branca.jp/updates/ai-website-development-experience)
@@ -293,6 +401,8 @@ Windows Subsystem for Linux（WSL）を使用する場合：
 ## まとめ
 
 Claude Codeは、開発者が複雑なコーディングタスクを効率的に遂行するための強力なツールです。エージェント型コーディング、多言語対応、GitHub統合、強固なセキュリティ対策などの特徴を備え、さまざまな開発シナリオでの活用が可能です。
+
+**2025年7月の重要なアップデート**: Windowsにネイティブ対応し、WSLを使用せずに直接Windows環境でインストール・利用が可能になりました。これにより、Windowsユーザーもより簡単にClaude Codeを導入できるようになりました。また、Git Bashを使用したインストール方法や、バイナリ版（ベータ）も提供されており、多様なインストール方法から選択できます。
 
 適切なプランを選択し、システム要件を満たした上で導入することで、開発プロセスの効率化と生産性向上が期待できます。特に、非開発者でも迅速にプロトタイプを作成し、アイデアを検証する手段としても有用であり、従来の開発リソースなしにカスタムツールを構築できる可能性を秘めています。
 

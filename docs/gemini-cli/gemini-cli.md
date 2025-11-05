@@ -48,7 +48,7 @@ Gemini CLIは、Googleが2025年6月に発表したオープンソースのAIエ
 ### 前提条件
 
 - **Node.js**: バージョン18以上が必要
-- **OS**: macOS、Linux、Windows（WSL経由）に対応
+- **OS**: macOS、Linux、Windows（ネイティブ対応。WSL経由でも利用可能）に対応
 
 ### macOS
 
@@ -86,23 +86,35 @@ npx @google/gemini-cli
 
 ### Windows
 
-#### 方法1: npmを使用（推奨）
+Gemini CLIはWindowsネイティブで動作します。PowerShellまたはコマンドプロンプトから直接インストール・使用できます。
+
+#### 方法1: npmを使用（推奨・Windowsネイティブ）
 
 1. **Node.jsのインストール**
    - [Node.js公式サイト](https://nodejs.org/)からLTS版をダウンロード
    - インストーラーを実行してインストール
 
 2. **Gemini CLIのインストール**
-   コマンドプロンプトまたはPowerShellを開き、以下のコマンドを実行します：
-   ```bash
+   PowerShellまたはコマンドプロンプトを開き、以下のコマンドを実行します：
+   ```powershell
+   npm install -g @google/gemini-cli
+   ```
+   または、コマンドプロンプトの場合：
+   ```cmd
    npm install -g @google/gemini-cli
    ```
 
 3. **インストールの確認**
-   ```bash
+   ```powershell
    gemini --version
    ```
    バージョン情報が表示されれば、インストールは成功です。
+
+4. **使用方法**
+   ```powershell
+   gemini
+   ```
+   これでWindowsネイティブでGemini CLIが起動します。
 
 #### 方法2: WSL（Windows Subsystem for Linux）を使用
 

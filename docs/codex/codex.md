@@ -42,7 +42,7 @@ Codex CLIは、OpenAIが開発したオープンソースのコーディング�
 - **OS**: 
   - macOS 12以上
   - Ubuntu 20.04+/Debian 10+
-  - Windows 11（WSL2経由）
+  - Windows 11（ネイティブサポート、WSL2経由も可能）
 - **Node.js**: バージョン22以上（LTSバージョン推奨）
 - **Git**: バージョン2.23以上
 - **RAM**: 最低4GB、推奨8GB以上
@@ -196,9 +196,56 @@ source ~/.bash_profile
 
 ### Windowsでのインストール
 
-Windowsでは、WSL2（Windows Subsystem for Linux）を使用する方法と、直接インストールする方法があります。**公式にはmacOSとLinuxをサポート**しており、Windowsでのサポートは**実験的**です。
+**2025年8月以降のアップデートにより、Windows環境でもWSLを使用せずにCodex CLIを直接インストールして利用できるようになりました。** Windows 11でのネイティブサポートが強化されています。
 
-#### 方法1: WSL2を使用（推奨）
+#### 方法1: ネイティブインストール（推奨）
+
+Windows環境で直接Codex CLIをインストールする方法です。
+
+1. **Node.jsのインストール**
+   - [Node.js公式サイト](https://nodejs.org/)から最新のLTS版（バージョン22以上）をダウンロード
+   - インストーラーを実行してインストール
+   - インストール確認：
+     ```powershell
+     node --version
+     npm --version
+     ```
+
+2. **Codex CLIのインストール**
+   PowerShellを管理者権限で開き、以下のコマンドを実行：
+   ```powershell
+   npm install -g @openai/codex@latest
+   ```
+   または、通常のPowerShell/コマンドプロンプトで：
+   ```bash
+   npm install -g @openai/codex
+   ```
+
+3. **インストール確認**
+   ```powershell
+   codex --version
+   ```
+   バージョン情報が表示されれば、インストールは完了です。
+
+4. **初回起動と認証**
+   ```powershell
+   codex
+   ```
+   初回起動時には、OpenAIアカウントでの認証が求められます。画面の指示に従ってログインしてください。
+
+5. **トラブルシューティング**
+   Windows環境で問題が発生した場合：
+   - ターミナルを再起動
+   - PCを再起動
+   - Codex CLIを再インストール
+     ```powershell
+     npm uninstall -g @openai/codex
+     npm install -g @openai/codex@latest
+     ```
+
+#### 方法2: WSL2を使用（代替方法）
+
+WSL2を使用する方法も引き続き利用可能です。Linux環境での動作を希望する場合や、ネイティブインストールで問題が発生した場合に使用できます。
 
 1. **WSL2のインストール**
 
@@ -228,33 +275,6 @@ Windowsでは、WSL2（Windows Subsystem for Linux）を使用する方法と、
    
    # インストール確認
    codex --version
-   ```
-
-#### 方法2: 直接インストール（実験的）
-
-1. **Node.jsのインストール**
-   - [Node.js公式サイト](https://nodejs.org/)からLTS版をダウンロード
-   - インストーラーを実行してインストール
-
-2. **Codex CLIのインストール**
-   コマンドプロンプトまたはPowerShellを開き：
-   ```bash
-   npm install -g @openai/codex
-   ```
-
-3. **インストール確認**
-   ```bash
-   codex --version
-   ```
-
-4. **トラブルシューティング**
-   Windows環境で問題が発生した場合：
-   - ターミナルを再起動
-   - PCを再起動
-   - Codex CLIを再インストール
-   ```bash
-   npm uninstall -g @openai/codex
-   npm install -g @openai/codex
    ```
 
 #### APIキーの設定（Windows）

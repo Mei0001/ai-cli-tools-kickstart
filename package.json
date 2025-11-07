@@ -1,0 +1,24 @@
+{
+  "name": "ai-cli-tools-slides",
+  "version": "1.0.0",
+  "description": "AI CLI Tools Kickstart Guide - スライド生成",
+  "scripts": {
+    "build:slides": "marp slides/slides.md --theme-set slides/themes.css --output dist/slides.html && cp -r assets dist/ 2>/dev/null || true",
+    "build:pdf": "marp slides/slides.md --theme-set slides/themes.css --pdf --output dist/slides.pdf",
+    "build:pptx": "marp slides/slides.md --theme-set slides/themes.css --pptx --output dist/slides.pptx",
+    "dev": "marp slides/slides.md --theme-set slides/themes.css --server --preview",
+    "preview": "python3 -m http.server 8080 --directory dist"
+  },
+  "keywords": [
+    "ai",
+    "cli",
+    "slides",
+    "marp"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@marp-team/marp-cli": "^3.4.0"
+  }
+}
+

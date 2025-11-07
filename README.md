@@ -4,12 +4,19 @@
 
 ## 対象ツール
 
-- Claude Code
-- Codex
-- Gemini CLI
-- Cursor CLI
-- GitHub Copilot CLI
-- その他のAI CLIツール
+各ツールの詳細情報は、以下のリンクから確認できます：
+
+- [Claude Code](docs/claude-code/claude-code.md)
+- [Codex](docs/codex/codex.md)
+- [Gemini CLI](docs/gemini-cli/gemini-cli.md)
+- [Cursor CLI](docs/cursor-cli/cursor-cli.md)
+- [GitHub Copilot CLI](docs/github-copilot-cli/github-copilot-cli.md)
+- [その他のAI CLIツール](docs/other-tools/other-tools.md)
+
+その他の資料：
+- [比較表](docs/comparison.md)
+- [参考資料](docs/references.md)
+- [スライド](slides/slides.md)
 
 ## 目的
 
@@ -78,19 +85,47 @@
 
 ### その他のAI CLIツール
 
-- [ ] 追加で調査すべきツールの特定
-- [ ] 各ツールの概要・特徴の調査と説明文の作成
-- [ ] インストール方法の手順書作成
-- [ ] 基本的な使い方のチュートリアル作成
-- [ ] 使用例・デモの作成（コード例付き）
+- [x] 追加で調査すべきツールの特定
+- [x] 各ツールの概要・特徴の調査と説明文の作成
+- [x] インストール方法の手順書作成
+- [x] 基本的な使い方のチュートリアル作成
+- [x] 使用例・デモの作成（コード例付き）
 
 ### 最終確認
 
-- [ ] 全ツールの情報が揃っているか確認
-- [ ] 各ドキュメントの内容の正確性チェック
-- [ ] 初学者向けの説明として適切か確認
-- [ ] 全体の統一感とフォーマットの確認
-- [ ] README.mdの最終更新
+- [x] 全ツールの情報が揃っているか確認
+- [x] 各ドキュメントの内容の正確性チェック
+- [x] 初学者向けの説明として適切か確認
+- [x] 全体の統一感とフォーマットの確認
+- [x] README.mdの最終更新
+
+## スライド生成
+
+このプロジェクトでは、Marpを使用してスライドを生成できます。
+
+### セットアップ
+
+```bash
+npm install
+```
+
+### スライドの生成
+
+```bash
+# HTML形式でスライドを生成
+npm run build:slides
+
+# PDF形式でスライドを生成
+npm run build:pdf
+
+# PowerPoint形式でスライドを生成
+npm run build:pptx
+
+# 開発サーバーでプレビュー
+npm run dev
+```
+
+生成されたスライドは `dist/` ディレクトリに出力されます。
 
 ## 貢献
 
